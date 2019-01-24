@@ -1,3 +1,4 @@
-# Bindings for the hermes protocol
+# Bindings for the hermes protocol 
 hermes-python>=0.1
 wikipedia
+# More dependency goes here.. 
