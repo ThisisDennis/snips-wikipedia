@@ -38,10 +38,12 @@ class Wikipedia(object):
         # terminate the session first if not continue
         hermes.publish_end_session(intent_message.session_id, "")
         article = intent_message.slots.article_indicator.first().value
+	article = article.encode("utf-8")
+	
+
 	try:
-        	summary = wiki.summary(article, sentences=2)
-		print summary
-        	hermes.publish_start_session_notification(intent_message.site_id, unicode(summary), "")
+        	summary = wiki.summary(article, sentences=2, auto_suggest=True)
+        	hermes.publish_start_session_notification(intent_message.site_id, summary, "")
 	except:
 		hermes.publish_start_session_notification(intent_message.site_id, u'Kann Wikipediaeintrag leider nicht finden oder es bestehen mehrere Möglichkeiten.', "")
 
