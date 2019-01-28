@@ -40,9 +40,10 @@ class Wikipedia(object):
         article = intent_message.slots.article_indicator.first().value
 	try:
         	summary = wiki.summary(article, sentences=2)
-        	hermes.publish_start_session_notification(intent_message.site_id, summary, "")
+		print summary
+        	hermes.publish_start_session_notification(intent_message.site_id, unicode(summary), "")
 	except:
-		hermes.publish_start_session_notification(intent_message.site_id, "Kann Wikipediaeintrag leider nicht finden oder es bestehen mehrere Möglichkeiten.", "")
+		hermes.publish_start_session_notification(intent_message.site_id, u'Kann Wikipediaeintrag leider nicht finden oder es bestehen mehrere Möglichkeiten.', "")
 
     # More callback function goes here...
 
